@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="description" content="" />
+	<meta name="robots" content="index, follow" />
+	<title>Another HSL Colorpicker jQuery Plugin</title>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+	<!--[if IE]><script type="text/javascript" src="js/html5.js"></script><![endif]-->
+	<!-- CSS Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Artifika&amp;v2' rel='stylesheet' type='text/css' />
+	<!-- CSS reset -->
+	<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	<!--
+	google supported ui themes:
+	base, black-tie, blitzer, cupertino, dark-hive, dot-luv, eggplant, excite-bike, flick, hot-sneaks, humanity, le-frog, mint-choc, overcast, pepper-grinder, redmond, smoothness, south-street, start, sunny, swanky-purse, trontastic, ui-darkness, ui-lightness, vader
+	-->
+	<!-- CSS JQuery UI -->
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+	<!-- CSS PickSlide -->
+	<link rel="stylesheet" type="text/css" href="css/PickSlide.css" />
+	<!-- CSS PickSlide, IE9 -->
+	<!--[if gte IE 9]>
+	<link rel="stylesheet" type="text/css" href="css/PickSlide-ie9.css" />
+	<![endif]-->
+	<!-- JQuery Basic -->
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<!-- JQuery UI -->
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<!-- Plugin PickSlide -->
+	<script type="text/javascript"  src="js/jquery.PickSlide.js"></script>
+	<!-- Other JS Stuff -->
+	
+	
+	<script type="text/javascript">
+
+	$(document).ready(function(){				
+$('#headslide').slider({
+					value: 0,
+					min: 0,
+					max: 360,
+					step: 1,
+					animate: true,
+					slide: function (event, ui) {
+						$(this).children('a').text(ui.value + '°');
+						geyHSVal();
+					},
+					stop: function (event, ui) {
+						$(this).children('a').text(ui.value + '°');
+						geyHSVal();
+					}
+				});
+	// PickSlide start ////////////////////
+				$('#demo').PickSlide({
+					// your configuration here...
+					addIcon: true,
+					iconTitle: 'ColorPicker',
+					setPickerToCenter: true,
+					onChange: function(count, hsla, rgba, hex, history) {
+						$('body').css('background-color', hsla);
+					}					
+				});
+				// PickSlide end /////////////////////
+				$('#wrap').css('display', 'inline-block');
+				var w = $('#wrap').width() / 2;
+				var h = $('#wrap').height() / 2;
+				var posX = ($(window).width() / 2) - w;
+				var posY = ($(window).height() / 2) - h;
+				$('#wrap').css({
+					'top' : posY + 'px',
+					'left' : posX + 'px',
+					'position': 'absolute'
+				});
+		});
+	</script>
+</head>
+<body dir="ltr">
+	<div id="wrap"><input type="text" id="demo" /></div>
+	<div id="headslide"  title="Hue" class="PS-slide-h gradient"></div>
+</body>
+</html>
